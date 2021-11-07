@@ -3,6 +3,7 @@
 /*
 
 Generator de teste
+
 Ruleaza fisierul sursa pentru toate testele si genereaza outputul corespunzator lui de genul
 test-x.in
 test-x.ok
