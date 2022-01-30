@@ -5,7 +5,7 @@
 using namespace std;
 
 ifstream fin("date.in");
-ofstream fout("date.out");
+ofstream fout("date_fast.out");
 
 int N, M, Q;
 int t_conn[N_MAX + 5], t_crit[N_MAX + 5], t[N_MAX + 5], lev[N_MAX + 5];

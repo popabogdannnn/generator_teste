@@ -1,8 +1,13 @@
 g++ -std=c++14 main.cpp -o main
+g++ -std=c++14 gen_tester.cpp -o gen_tester
+g++ -std=c++14 sol.cpp -o sol
+g++ -std=c++14 sol_fast.cpp -o sol_fast
 
-for i in {1..2};
+./gen_tester "test"
+
+for i in {1..20};
 do
-    ./main $i sol date < $i.in
+    ./main $i sol sol_fast date < $i.in
 done
 
 exit 0

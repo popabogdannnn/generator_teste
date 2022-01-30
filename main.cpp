@@ -22,6 +22,7 @@ char command[105];
 
 void fromStringToCharPtr(string s)
 {
+    memset(command, 0, sizeof(command));
     for(int i = 0; i < s.size(); i++) {
         command[i] = s[i];
     }
@@ -29,14 +30,15 @@ void fromStringToCharPtr(string s)
 
 int main(int argc, char *argv[])
 {
-    if(argc != 4) {
+    if(argc != 5) {
         cout << "Numar invalid de argumente";
         return 0;
     }
 
     string testNumber = string(argv[1]);
     string solExecutable = string(argv[2]);
-    string fileName = string(argv[3]);
+    string solFast = string(argv[3]);
+    string fileName = string(argv[4]);
 
 
     ofstream fileIn(fileName + ".in");
@@ -46,14 +48,27 @@ int main(int argc, char *argv[])
     fileIn.close();
     fromStringToCharPtr("./" + solExecutable);
     system(command);
+    fromStringToCharPtr("./" + solFast);
+    system(command);
 
     ifstream fileOut(fileName + ".out");
     ofstream testFileOK(fileName + "-" + testNumber + ".ok");
     ifstream fin(fileName + ".in");
+    
 
+    
     testFileIn << fin.rdbuf();
     testFileOK << fileOut.rdbuf();
-
+    
+  
+    int res = system("diff date.out date_fast.out");
+    cout << testNumber << " ";
+    if(res == 0) {
+        cout << "PASSED\n";
+    }
+    else {
+        cout << "WRONG ANSWER\n";
+    }
 
     return 0;
 }
