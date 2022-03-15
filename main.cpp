@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <stdlib.h>
+#include <unistd.h>
 /*
 
 Generator de teste
@@ -42,7 +43,7 @@ int main(int argc, char *argv[])
 
 
     ofstream fileIn(fileName + ".in");
-    ofstream testFileIn(fileName + "-" + testNumber + ".in");
+    
     fileIn << cin.rdbuf();
  
     fileIn.close();
@@ -52,16 +53,18 @@ int main(int argc, char *argv[])
     system(command);
 
     ifstream fileOut(fileName + ".out");
-    ofstream testFileOK(fileName + "-" + testNumber + ".ok");
+    
     ifstream fin(fileName + ".in");
     
-
-    
+    //system("mkdir tests");
+    chdir("tests");
+    ofstream testFileIn(testNumber + "-" + fileName +  + ".in");
+    ofstream testFileOK(testNumber + "-" + fileName +  + ".ok");
     testFileIn << fin.rdbuf();
     testFileOK << fileOut.rdbuf();
     
-  
-    int res = system("diff date.out date_fast.out");
+    chdir("../");
+    int res = system((string("diff ") + fileName + ".out " +  fileName + "_fast.out").c_str());
     cout << testNumber << " ";
     if(res == 0) {
         cout << "PASSED\n";

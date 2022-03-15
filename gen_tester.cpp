@@ -26,25 +26,14 @@ int main(int argc, char *argv[])
     }
 
     for(int t = 1; t <= 20; t++) {
-        int N = 250000, M, Q;
-        //fin >> N >> M >> Q;
-        M = 249999;
-        Q = 249999;
-        ofstream fout(itoa(t) + ".in");
-        fout << N << " " << M << " " << Q << "\n";
-        int arr[N + 2];
+        int N, vmax;
+        fin >> N >> vmax;
+        ofstream fout("aux/" + itoa(t) + ".in");
+        fout << N << "\n";
         for(int i = 1; i <= N; i++) {
-            arr[i] = i;
+            fout << rand() % vmax << " ";
         }
-        
-        for(int i = 2; i <= N; i++) {
-            fout << arr[1] << " " << arr[i] << "\n";
-        }
-
-        for(int i = 2; i < N; i++) {
-            fout << arr[i] << " " << arr[i + 1] << "\n";
-        }
-        fout << arr[2] << " " << arr[N] << "\n"; 
+        fout << "\n";
         fout.close();
     }
     return 0;
